@@ -1,9 +1,9 @@
 //console.log("Processo de renderização")
 
 function client() {
-    //console.log("teste do botão cliente")
-    api.clientWindow()
+  window.location.href = './employee.html';
 }
+
 
 /**api.dbStatus((event, message) => {
     console.log(message)

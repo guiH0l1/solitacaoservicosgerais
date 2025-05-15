@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="container" id="inputForm">
+        <!-- FORMULARIO -->
+        <form id="formEmployee" class="row g-3">
+            <div class="row mb-4">
+                <div class="col-md-9">
+                    <input type="text" id="searchEmployee" class="form-control" placeholder="Buscar Funcionário"
+                        spellcheck="false">
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-primary w-200" onclick="searchName()">Buscar</button>
+                </div>
+            </div>
+
+            <!--ID do cliente oculto-->
+            <input type="text" id="inputIdEmployee">
+
+            <!-- NOME -->
+            <div class="col-md-5">
+                <label for="name" class="form-label">Nome do solicitante:</label>
+                <input type="text" id="inputNome" class="form-control" spellcheck="false" required>
+            </div>
+            <!-- SETOR -->
+            <div class="col-md-5">
+                <label for="setor" class="form-label">Cargo / Função</label>
+                <input type="text" id="inputSector" class="form-control" spellcheck="false" required>
+            </div>
+            <!-- EMAIL -->
+            <div class="col-md-6">
+                <label for="email" class="form-label">E-mail:</label>
+                <input type="email" id="inputEmail" class="form-control" required>
+            </div>
+            <!-- TELEFONE -->
+            <div class="col-md-6">
+                <label for="telefone" class="form-label">Telefone:</label>
+                <input type="text" id="inputTelefone" class="form-control" required>
+            </div>
+            <!-- UNIDADE -->
+            <div class="col-md-6">
+                <label for="un" class="form-label">UNIDADE:</label>
+                <select id="inputUn" class="form-select" required>
+                    <option value="">Selecione</option>
+                    <option value="CARRÃO">CARRÃO</option>
+                    <option value="CENTRAL">CENTRAL</option>
+                    <option value="PINHEIROS1">PINHEIROS1</option>
+                    <option value="PINHEIROS2">PINHEIROS2</option>
+                    <option value="SNTV">SNTV</option>
+                    <option value="POPSCHOOL">POPSCHOOL</option>
+                    <option value="VILAMADALENA">VILAMADALENA</option>
+                    <option value="SANTOAMARO">SANTOAMARO</option>
+                    <option value="SANTOANDRE">SANTOANDRE</option>
+                </select>
+            </div>
+            <!-- SERVIÇO -->
+            <div class="col-md-6">
+                <label for="un" class="form-label">TIPO DE SERVIÇO:</label>
+                <select id="inputUn" class="form-select" required>
+                    <option value="">Selecione</option>
+                    <option value="equip">MANUTENÇÃO DE EQUIPAMENTOS</option>
+                    <option value="manuTI">MANUTENÇÃO T.I</option>
+                    <option value="pred">MANUTENÇÃO PREDIAL</option>
+                    <option value="PINHEIROS2">MANUTENÇÃO SHOPPING</option>
+                </select>
+            </div>
+
+            <h2>Unordered List with Circle Bullets</h2>
+
+            <ul style="list-style-type:circle;">
+                <li>Coffee</li>
+                <li>Tea</li>
+                <li>Milk</li>
+            </ul>
+
+
+
+
+
+
+            <!-- BOTOES -->
+            <div class="col-12 py-3 rodape">
+                <div class="botao-container">
+                    <button type="submit" class="btn btn-success" id="btnCreate">ADICIONAR</button>
+                    <button type="submit" class="btn btn-warning" id="btnUpdate">EDITAR</button>
+                    <button type="button" class="btn btn-danger" onclick="excluirCliente()"
+                        id="btnDelete">EXCLUIR</button>
+                    <button type="reset" class="btn" onclick="resetForm()" id="btnReset"></button>
+                </div>
+            </div>
+            <div id="mensagemSucesso" class="text-success text-center mt-3" style="display: none;">Cadastro realizado
+                com sucesso!</div>
+        </form>
+    </section>
+    <footer>
+        <p id="dataAtual"></p>
+        <img src="../public/img/dboff.png" alt="ícone banco de dados" id="iconeDB">
+    </footer>
+
+    <script src="../public/js/bootstrap.min.js"></script>
+    <script src="renderer.js"></script>
+
+</body>
+
+</html>
