@@ -1,8 +1,22 @@
 //console.log("Processo de renderização")
 
 function client() {
-  window.location.href = './employee.html';
+  location.href = './employee.html'
 }
+
+
+function getData() {
+    const data = new Date()
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    }
+    return data.toLocaleDateString('pt-BR', options)
+}
+ 
+document.getElementById('dataAtual').innerHTML = getData()
 
 
 /**api.dbStatus((event, message) => {
