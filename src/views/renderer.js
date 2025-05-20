@@ -19,6 +19,9 @@ function getData() {
 document.getElementById('dataAtual').innerHTML = getData()
 
 
+
+
+
 /**api.dbStatus((event, message) => {
     console.log(message)
     if (message === "conectado") {

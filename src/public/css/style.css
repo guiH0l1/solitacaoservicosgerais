@@ -6,17 +6,21 @@ html, body {
     padding: 0;
 }
 
+.images{
+        display: flex;
+        gap: 20px; 
+        align-items: center;
+}
 
 .container {
     background-color: #c8c8c8;
-    min-height: 100vh; /* Faz a seção ocupar 100% da altura da tela */
+    min-height: 100vh; 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; 
+    align-items: center; 
     padding: 20px;
 }
-
 
 .opcao ul{
   list-style-type: none; 
