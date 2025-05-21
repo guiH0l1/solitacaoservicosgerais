@@ -27,3 +27,67 @@ ipcMain.on('client-window', () => {
 })
 
 app.whenReady().then(createWindow)
+
+
+
+const template = [
+  {
+    label: 'Notas',
+    submenu: [
+      {
+        label: 'Criar nota',
+        accelerator: 'Ctrl+N',
+        click: () => noteWindow()
+      },
+      {
+        type: 'separator'
+      },
+      {
+        label: 'Sair',
+        accelerator: 'Alt+F4',
+        click: () => app.quit()
+      }
+    ]
+  },
+  {
+    label: 'Ferramentas',
+    submenu: [
+      {
+        label: 'Aplicar zoom',
+        role: 'zoomIn'
+      },
+      {
+        label: 'Reduzir zoom',
+        role: 'zoomOut'
+      },
+      {
+        label: 'Restaurar Zoom padrão',
+        role: 'resetZoom'
+      },
+      {
+        type: 'separator'
+      },
+      {
+        label: 'Recarregar',
+        Click: () => updateList()
+      },
+      {
+        label: 'DevTools',
+        role: 'toggleDevTools'
+      }
+    ]
+  },
+  {
+    label: 'Ajuda',
+    submenu: [
+      {
+        label: 'Repositorio',
+        click: () => shell.openExternal('https://github.com/guiH0l1')
+      },
+      {
+        label: 'Sobre',
+        click: () => aboutWindow()
+      }
+    ]
+  }
+]
