@@ -52,6 +52,23 @@ const template = [
     ]
   },
   {
+    label: 'Relatório',
+    submenu: [
+      {
+        label: 'Clientes',
+        click: () => relatorioClientes()
+      },
+      {
+        label: 'OS abertas',
+        click: () => OSAbertas()
+      },
+      {
+        label: 'OS finalizadas',
+        click: () => OSFinalizadas()
+      },
+    ]
+  },
+  {
     label: 'Ferramentas',
     submenu: [
       {
@@ -93,3 +110,53 @@ const template = [
     ]
   }
 ]
+
+function searchName() {
+  let input = document.getElementById('searchCliente').value.trim()
+  console.log(input)
+
+  if (input === "") {
+      api.validateSearch()
+      return
+  }
+
+  // Verifica se é CPF (somente números e 11 dígitos)
+  let isCpf = /^\d{11}$/.test(input.replace(/\D/g, ''))
+
+  if (isCpf) {
+      // Buscar por CPF
+      api.buscarCpf(input)
+  } else {
+      // Buscar por nome
+      api.searchName(input)
+  }
+
+  api.renderClient((event, client) => {
+      const clientData = JSON.parse(client)
+      arrayClient = clientData
+      // Uso do forEach para percorrer o vetor
+      arrayClient.forEach((c) => {
+          idClient.value = c._id
+          nome.value = c.nome
+          sexo.value = c.sexo
+          cpf.value = c.cpf
+          email.value = c.email
+          tel.value = c.telefone
+          cep.value = c.cep
+          logradouro.value = c.logradouro
+          numero.value = c.numero
+          complemento.value = c.complemento
+          bairro.value = c.bairro
+          cidade.value = c.cidade
+          uf.value = c.uf
+          restaurarEnter()
+          //desativar o botão adicionar
+          btnCreate.disabled = true
+          // ativar e desativar o botão editar e excluir
+          btnUpdate.disabled = false
+          btnDelete.disabled = false
+      })
+
+  })
+}
+// FIM =======================================================================

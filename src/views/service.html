@@ -15,28 +15,21 @@
         <form id="formEmployee" class="row g-3">
             <div class="row mb-4">
                 <div class="col-md-9">
-                    <input type="text" id="searchEmployee" class="form-control" placeholder="Buscar Funcionário"
+                    <input type="text" id="searchEmployee" class="form-control" placeholder="Buscar O.S"
                         spellcheck="false">
                 </div>
                 <div class="col-md-3">
                     <button type="button" class="btn btn-primary w-200" onclick="searchName()">Buscar</button>
                 </div>
             </div>
-            <h1>Formulário de cadastro de clientes</h1>
+            <h1>Formulário de Ordem de Serviço</h1>
             <!--ID do cliente oculto-->
             <input type="text" id="inputIdEmployee">
 
             <!-- NOME -->
             <div class="col-md-5">
-                <label for="name" class="form-label">Nome do Funcionario:</label>
+                <label for="name" class="form-label">Nome do solicitante:</label>
                 <input type="text" id="inputNome" class="form-control" spellcheck="false" required>
-            </div>
-            <div class="col-md-5">
-                <label for="cpf" class="form-label">CPF:</label>
-                <input type="text" id="inputCpf" class="form-control" required onblur="validarCPF()">
-                <div id="cpfErro" class="text-danger mt-1" style="display: none;">CPF inválido</div>
-                <div id="cpfDuplo" class="text-danger mt-1" style="display: none;">CPF já cadastrado</div>
-                <br>
             </div>
             <!-- SETOR -->
             <div class="col-md-5">
@@ -55,7 +48,7 @@
             </div>
             <!-- UNIDADE -->
             <div class="col-md-6">
-                <label for="un" class="form-label">unidade em que trabalha:</label>
+                <label for="un" class="form-label">UNIDADE:</label>
                 <select id="inputUn" class="form-select" required>
                     <option value="">Selecione</option>
                     <option value="CARRÃO">CARRÃO</option>
@@ -70,7 +63,7 @@
                 </select>
             </div>
             <!-- SERVIÇO -->
-            <!--           <div class="col-md-6">
+            <div class="col-md-6">
                 <label for="un" class="form-label">TIPO DE SERVIÇO:</label>
                 <select id="inputUn" class="form-select" required>
                     <option value="">Selecione</option>
@@ -103,17 +96,17 @@
                     </li>
                 </ul>
             </div>
-            Descrição da O.S
+            <!--Descrição da O.S-->
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Descrição da Ordem de Serviço:</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>-->
+            </div>
             <!-- BOTOES -->
             <div class="col-12 py-3 rodape">
                 <div class="botao-container">
                     <button type="submit" class="btn btn-success" id="btnCreate">ADICIONAR</button>
                     <button type="submit" class="btn btn-warning" id="btnUpdate">EDITAR</button>
-                    <button type="button" class="btn btn-danger" onclick="removeClient()"
+                    <button type="button" class="btn btn-danger" onclick="excluirCliente()"
                         id="btnDelete">EXCLUIR</button>
                     <button type="reset" class="btn" onclick="resetForm()" id="btnReset"></button>
                 </div>

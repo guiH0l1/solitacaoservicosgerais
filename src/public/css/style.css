@@ -6,10 +6,12 @@ html, body {
     padding: 0;
 }
 
-.images{
-        display: flex;
-        gap: 20px; 
-        align-items: center;
+.images {
+    display: flex;           
+    justify-content: center; 
+    align-items: center;    
+    gap: 20px;               
+    height: 100vh;     
 }
 
 .container {
@@ -29,6 +31,15 @@ html, body {
   list-style-type: none;
   display: flex; 
   gap: 20px;
+}
+
+#btnReset{
+    width: 48px;
+    height: 48px;
+    background-image: url(../img/erase.png);
+    border: none;
+    cursor: pointer;
+    margin-left: 8px;
 }
 
 /** Rodapé **/
