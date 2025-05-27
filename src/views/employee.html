@@ -11,8 +11,10 @@
 
 <body>
     <section class="container" id="inputForm">
+        
         <!-- FORMULARIO -->
         <form id="formEmployee" class="row g-3">
+            <button type="back" class="btn" onclick="backPage()" id="btnBack"></button>
             <div class="row mb-4">
                 <div class="col-md-9">
                     <input type="text" id="searchEmployee" class="form-control" placeholder="Buscar Funcionário"
@@ -33,7 +35,7 @@
             </div>
             <div class="col-md-5">
                 <label for="cpf" class="form-label">CPF:</label>
-                <input type="text" id="inputCpf" class="form-control" required onblur="validarCPF()">
+                <input type="text" id="inputCpf" class="form-control" required onblur="validateCPF()">
                 <div id="cpfErro" class="text-danger mt-1" style="display: none;">CPF inválido</div>
                 <div id="cpfDuplo" class="text-danger mt-1" style="display: none;">CPF já cadastrado</div>
                 <br>

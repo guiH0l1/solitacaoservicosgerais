@@ -1,39 +1,49 @@
 @charset "UTF-8";
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
+#btnBack {
+    width: 16px;
+    height: 16px;
+    background-image: url(../img/arrow-left.png);
+    border: none;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
 .images {
-    display: flex;           
-    justify-content: center; 
-    align-items: center;    
-    gap: 20px;               
-    height: 100vh;     
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 100vh;
 }
 
 .container {
     background-color: #c8c8c8;
-    min-height: 100vh; 
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     padding: 20px;
 }
 
-.opcao ul{
-  list-style-type: none; 
-  padding-left: 0;
-  display: flex;
-  list-style-type: none;
-  display: flex; 
-  gap: 20px;
+.opcao ul {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
 }
 
-#btnReset{
+#btnReset {
     width: 48px;
     height: 48px;
     background-image: url(../img/erase.png);

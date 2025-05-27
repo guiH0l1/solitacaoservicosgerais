@@ -30,7 +30,34 @@ ipcMain.on('client-window', () => {
 
 app.whenReady().then(createWindow)
 
+let about
+function aboutWindow() {
+  const mainWindow = BrowserWindow.getFocusedWindow()
 
+  if (mainWindow) {
+    about = new BrowserWindow({
+      width: 415,
+      height: 350,
+      autoHideMenuBar: true,
+      resizable: false,
+      minimizable: false,
+      parent: mainWindow,
+      modal: true,
+      webPreferences: {
+        preload: path.join(__dirname, './preload.js')
+      }
+    })
+  }
+
+  about.loadFile('./src/views/about.html')
+
+  ipcMain.on('about-exit', () => {
+    if (about && !about.isDestroyed()) {
+      about.close()
+    }
+
+  })
+}
 
 const template = [
   {
@@ -111,7 +138,9 @@ const template = [
   }
 ]
 
-function searchName() {
+
+
+/**function searchName() {
   let input = document.getElementById('searchCliente').value.trim()
   console.log(input)
 
@@ -158,5 +187,5 @@ function searchName() {
       })
 
   })
-}
+}*/
 // FIM =======================================================================
