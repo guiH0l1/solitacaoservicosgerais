@@ -11,14 +11,20 @@
 
 <body>
     <div class="images">
-        <img src="../public/img/local-na-rede-internet.png" alt="clientes" title="Cadastro de clientes" onclick="employee()">
-        <p>Cadastrar Funcionário</p>
-        <img src="../public/img/pedido.png" alt="OSicon" id="OSicon" onclick="service()">
-        <p>Solicitar Serviço</p>
+        <button class="funcButton" alt="funcionarios" title="Cadastrar funcionário"
+        onclick="employee()">
+            <img src="../public/img/local-na-rede-internet.png" >
+            <p>Cadastrar Funcionário</p>
+        </button>
+        <button class="OSButton" alt="Ordem de serviço" title="Solicitar O.S" id="OSicon"
+        onclick="service()">
+            <img src="../public/img/pedido.png">
+            <p>Ordem de Serviço</p>
+        </button>
     </div>
     <footer>
         <p id="currentlyData"></p>
-        <img src="../public/img/database.png" alt="ícone banco de dados" id="iconDB">
+        <img src="../public/img/dbon.png" alt="ícone banco de dados" id="iconDB">
     </footer>
 </body>
 

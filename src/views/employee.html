@@ -10,11 +10,11 @@
 </head>
 
 <body>
+    <button type="back" class="btn" onclick="backPage()" id="btnBack"></button>
     <section class="container" id="inputForm">
-        
         <!-- FORMULARIO -->
         <form id="formEmployee" class="row g-3">
-            <button type="back" class="btn" onclick="backPage()" id="btnBack"></button>
+           
             <div class="row mb-4">
                 <div class="col-md-9">
                     <input type="text" id="searchEmployee" class="form-control" placeholder="Buscar Funcionário"
@@ -24,7 +24,7 @@
                     <button type="button" class="btn btn-primary w-200" onclick="searchName()">Buscar</button>
                 </div>
             </div>
-            <h1>Formulário de cadastro de clientes</h1>
+            <h1>Formulário de cadastro de funcionários</h1>
             <!--ID do cliente oculto-->
             <input type="text" id="inputIdEmployee">
 
@@ -71,46 +71,6 @@
                     <option value="SANTOANDRE">SANTO ANDRE</option>
                 </select>
             </div>
-            <!-- SERVIÇO -->
-            <!--           <div class="col-md-6">
-                <label for="un" class="form-label">TIPO DE SERVIÇO:</label>
-                <select id="inputUn" class="form-select" required>
-                    <option value="">Selecione</option>
-                    <option value="equip">MANUTENÇÃO DE EQUIPAMENTOS</option>
-                    <option value="manuTI">MANUTENÇÃO T.I</option>
-                    <option value="pred">MANUTENÇÃO PREDIAL</option>
-                    <option value="PINHEIROS2">MANUTENÇÃO SHOPPING</option>
-                </select>
-            </div>
-            <h3>Nível de Urgência</h3>
-            <div class="opcao">
-                <ul>
-                    <li>
-                        <label>
-                            <input type="radio" name="opcao">
-                            Pouca Urgência
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="radio" name="opcao">
-                            Urgência
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="radio" name="opcao">
-                            Extrema Urgência
-                        </label>
-                    </li>
-                </ul>
-            </div>
-            Descrição da O.S
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Descrição da Ordem de Serviço:</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>-->
-            <!-- BOTOES -->
             <div class="col-12 py-3 rodape">
                 <div class="botao-container">
                     <button type="submit" class="btn btn-success" id="btnCreate">ADICIONAR</button>

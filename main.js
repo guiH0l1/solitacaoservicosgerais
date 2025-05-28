@@ -3,8 +3,8 @@ const path = require('node:path')
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1080,
-    height: 900,
+    width: 700,
+    height: 550,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true
@@ -16,18 +16,72 @@ function createWindow() {
   win.loadFile('./src/views/index.html')
 }
 
+let employee
+function employeeWindow(){
+    const main = BrowserWindow.getFocusedWindow()
+    if (main) {
+        employee = new BrowserWindow({
+            width: 1080,
+            height: 980,
+            //autoHideMenuBar: true,
+            //resizable: false,
+            parent: main,
+            modal: true,
+            center: true, 
+            //ativação do preload.js
+            webPreferences: {
+                preload: path.join(__dirname, 'preload.js')
+            }
+        })
+    }
+  employee.loadFile('./src/views/employee.html')
 
 
+}
+
+ipcMain.on('employee-window', () => {
+  employeeWindow()
+})
+
+
+let service
+function serviceWindow(){
+    const main = BrowserWindow.getFocusedWindow()
+    if (main) {
+        service = new BrowserWindow({
+            width: 1080,
+            height: 980,
+            //autoHideMenuBar: true,
+            //resizable: false,
+            parent: main,
+            modal: true,
+            center: true, 
+            //ativação do preload.js
+            webPreferences: {
+                preload: path.join(__dirname, 'preload.js')
+            }
+        })
+    }
+  service.loadFile('./src/views/service.html')
+
+
+}
+
+ipcMain.on('service-window', () => {
+  serviceWindow()
+})
+
+/** 
 // Abre uma nova janela ao clicar no botão
-ipcMain.on('client-window', () => {
+ipcMain.on('employee-window', () => {
   const clientWin = new BrowserWindow({
-    width: 600,
-    height: 400
+    width: 1080,
+    height: 900
   })
 
   clientWin.loadFile('./src/views/employee.html')
 })
-
+*/
 app.whenReady().then(createWindow)
 
 let about
@@ -58,6 +112,13 @@ function aboutWindow() {
 
   })
 }
+
+ipcMain.on('close-employee-window', () => {
+  const win = BrowserWindow.getFocusedWindow();
+  if (win) {
+    win.close();
+  }
+})
 
 const template = [
   {

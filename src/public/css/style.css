@@ -7,9 +7,10 @@ body {
     padding: 0;
 }
 
+
 #btnBack {
-    width: 16px;
-    height: 16px;
+    width: 4px;
+    height: 4px;
     background-image: url(../img/arrow-left.png);
     border: none;
     cursor: pointer;
@@ -22,16 +23,56 @@ body {
     align-items: center;
     gap: 20px;
     height: 100vh;
-}
+  }
+  
+  .funcButton, .OSButton {
+    width: 300px;
+    height: 200px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  
+    /* layout flex para centralizar conteúdo vertical e horizontalmente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  
+    background-color: #f9f9f9;
+  }
+  
+  .funcButton img, .OSButton img {
+    width: 120px;  /* tamanho fixo, ajusta como quiser */
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    pointer-events: none; /* pra clique passar para o botão */
+  }
+  
+  .funcButton p, .OSButton p {
+    margin: 0;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+  }
 
 .container {
-    background-color: #c8c8c8;
+    background-color: #FAF3E0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
+}
+
+#sobre{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .opcao ul {
@@ -53,16 +94,26 @@ body {
 }
 
 /** Rodapé **/
+#iconDB {
+    height: 100%;        /* garante que a imagem se ajuste à altura do footer */
+    object-fit: contain; /* mantém a proporção da imagem */
+    margin-right: 10px;  /* evita que fique colado ou ultrapasse a tela */
+}
+#currentlyData {
+    margin-left: 10px;   /* para manter a simetria com o ícone à direita */
+    align-self: center;  /* centraliza verticalmente */
+}
 footer {
     background-color: #ffff00;
     display: flex;
     justify-content: space-between;
-    display: fixed;
-    padding: 5px;
+    align-items: center; /* centraliza verticalmente os itens */
+    padding: 0 5px;
     height: 30px;
     position: fixed;
     bottom: 0;
     width: 100%;
     color: #000;
     font-weight: bold;
+    box-sizing: border-box; /* garante que o padding conte no cálculo do tamanho */
 }

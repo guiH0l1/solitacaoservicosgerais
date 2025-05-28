@@ -1,16 +1,17 @@
 //console.log("Processo de renderização")
 
 function employee() {
-    location.href = './employee.html'
+    api.employeeWindow()
 }
 
 function service() {
-    location.href = './service.html'
+    api.serviceWindow()
 }
 
 function backPage() {
-    location.href = './index.html'
-}
+    api.closeWindow()
+  }
+
 function getData() {
     const data = new Date()
     const options = {
@@ -75,6 +76,15 @@ api.resetForm((args) => {
 
 
 
+api.resetForm(() => {
+    document.getElementById('formClient').reset()
+    arrayClient = [] // zera o array
+    btnCreate.disabled = false
+    btnUpdate.disabled = true
+    btnDelete.disabled = true
+})
+
+
 /**api.dbStatus((event, message) => {
     console.log(message)
     if (message === "conectado") {
@@ -83,3 +93,39 @@ api.resetForm((args) => {
         document.getElementById('statusdb').src = "../public/img/dboff.png"
     }
 })*/
+
+/**api.renderOS((event, dataOS) => {
+    console.log(dataOS)
+    const os = JSON.parse(dataOS)
+    // preencher os campos com os dados da OS
+    idOS.value = os._id
+    // formatar data:
+    const data = new Date(os.dataEntrada)
+    const formatada = data.toLocaleString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    })
+    dateOS.value = formatada
+    idClient.value = os.idCliente
+    // disparar ação de busca do cliente
+    idClient.dispatchEvent(new Event('change'))
+    statusOS.value = os.statusOS
+    computer.value = os.computador
+    serial.value = os.serie
+    problem.value = os.problema
+    obs.value = os.observacao
+    specialist.value = os.tecnico
+    diagnosis.value = os.diagnostico
+    parts.value = os.pecas
+    total.value = os.valor
+    // desativar o botão adicionar
+    btnCreate.disabled = true
+    // ativar os botões editar e excluir
+    btnUpdate.disabled = false
+    btnDelete.disabled = false    
+})
+*/

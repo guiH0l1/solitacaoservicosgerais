@@ -1,7 +1,9 @@
 const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('api', {
-    clientWindow: () => ipcRenderer.send('client-window'),
+    employeeWindow: () => ipcRenderer.send('employee-window'),
+    serviceWindow: () => ipcRenderer.send('service-window'),
     aboutExit: () => ipcRenderer.send('about-exit'),
     resetForm: (args) => ipcRenderer.on('reset-form', args),
+    closeWindow: () => ipcRenderer.send('close-employee-window')
 })
