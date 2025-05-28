@@ -14,7 +14,7 @@ body {
     background-image: url(../img/arrow-left.png);
     border: none;
     cursor: pointer;
-    margin-left: 8px;
+    margin-left: 4px;
 }
 
 .images {
@@ -59,7 +59,7 @@ body {
   }
 
 .container {
-    background-color: #FAF3E0;
+    background-color: #FFF59D;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -93,21 +93,30 @@ body {
     margin-left: 8px;
 }
 
+#logo {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    top: 80%; 
+    right: 20px; 
+    margin: 0;
+}
+
 /** Rodapé **/
 #iconDB {
-    height: 100%;        /* garante que a imagem se ajuste à altura do footer */
-    object-fit: contain; /* mantém a proporção da imagem */
-    margin-right: 10px;  /* evita que fique colado ou ultrapasse a tela */
+    height: 100%;        
+    object-fit: contain;
+    margin-right: 10px;  
 }
 #currentlyData {
-    margin-left: 10px;   /* para manter a simetria com o ícone à direita */
-    align-self: center;  /* centraliza verticalmente */
+    margin-left: 10px;   
+    align-self: center;  
 }
 footer {
     background-color: #ffff00;
     display: flex;
     justify-content: space-between;
-    align-items: center; /* centraliza verticalmente os itens */
+    align-items: center; 
     padding: 0 5px;
     height: 30px;
     position: fixed;
@@ -115,5 +124,5 @@ footer {
     width: 100%;
     color: #000;
     font-weight: bold;
-    box-sizing: border-box; /* garante que o padding conte no cálculo do tamanho */
+    box-sizing: border-box; 
 }

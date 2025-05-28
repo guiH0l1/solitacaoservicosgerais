@@ -10,7 +10,7 @@ function service() {
 
 function backPage() {
     api.closeWindow()
-  }
+}
 
 function getData() {
     const data = new Date()
@@ -75,17 +75,20 @@ api.resetForm((args) => {
 })
 
 
-
-api.resetForm(() => {
-    document.getElementById('formClient').reset()
-    arrayClient = [] // zera o array
-    btnCreate.disabled = false
+// processo de cadastro do cliente
+const foco = document.getElementById('searchEmployee')
+// Criar um vetor global para extrair os dados do cliente
+let arrayEmployee = []
+document.addEventListener('DOMContentLoaded', () => {
     btnUpdate.disabled = true
     btnDelete.disabled = true
+    // Ativar o botao adicionar
+    btnCreate.disabled = false
+    foco.focus()
 })
 
-
-/**api.dbStatus((event, message) => {
+/**
+api.dbStatus((event, message) => {
     console.log(message)
     if (message === "conectado") {
         document.getElementById('statusdb').src = "../public/img/dbon.png"

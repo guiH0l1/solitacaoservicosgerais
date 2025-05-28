@@ -71,28 +71,29 @@
                     <option value="equip">MANUTENÇÃO DE EQUIPAMENTOS</option>
                     <option value="manuTI">MANUTENÇÃO T.I</option>
                     <option value="pred">MANUTENÇÃO PREDIAL</option>
-                    <option value="PINHEIROS2">MANUTENÇÃO SHOPPING</option>
+                    <option value="manuSho">MANUTENÇÃO SHOPPING</option>
+                    <option value="outros">OUTROS</option>
                 </select>
             </div>
-            <h3>Nível de Urgência</h3>
+            <h3>Escala de prioridade:</h3>
             <div class="opcao">
                 <ul>
                     <li>
                         <label>
                             <input type="radio" name="opcao">
-                            Pouca Urgência
+                           Agendada
                         </label>
                     </li>
                     <li>
                         <label>
                             <input type="radio" name="opcao">
-                            Urgência
+                           Necessária
                         </label>
                     </li>
                     <li>
                         <label>
                             <input type="radio" name="opcao">
-                            Extrema Urgência
+                            Urgente
                         </label>
                     </li>
                 </ul>
@@ -107,7 +108,7 @@
                 <div class="botao-container">
                     <button type="submit" class="btn btn-success" id="btnCreate">SOLICITAR</button>
                     <button type="submit" class="btn btn-warning" id="btnUpdate">EDITAR</button>
-                    <button type="button" class="btn btn-danger" onclick="excluirCliente()"
+                    <button type="button" class="btn btn-danger" onclick="e()"
                         id="btnDelete">CONCLUIR</button>
                     <button type="reset" class="btn" onclick="resetForm()" id="btnReset"></button>
                 </div>

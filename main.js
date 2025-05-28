@@ -1,10 +1,11 @@
-const { app, BrowserWindow, ipcMain, Menu } = require('electron')
+const { app, shell, BrowserWindow, ipcMain, Menu } = require('electron')
 const path = require('node:path')
 
 function createWindow() {
   const win = new BrowserWindow({
     width: 700,
     height: 550,
+    resizable: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true
@@ -17,23 +18,23 @@ function createWindow() {
 }
 
 let employee
-function employeeWindow(){
-    const main = BrowserWindow.getFocusedWindow()
-    if (main) {
-        employee = new BrowserWindow({
-            width: 1080,
-            height: 980,
-            //autoHideMenuBar: true,
-            //resizable: false,
-            parent: main,
-            modal: true,
-            center: true, 
-            //ativação do preload.js
-            webPreferences: {
-                preload: path.join(__dirname, 'preload.js')
-            }
-        })
-    }
+function employeeWindow() {
+  const main = BrowserWindow.getFocusedWindow()
+  if (main) {
+    employee = new BrowserWindow({
+      width: 1080,
+      height: 980,
+      //autoHideMenuBar: true,
+      //resizable: false,
+      parent: main,
+      modal: true,
+      center: true,
+      //ativação do preload.js
+      webPreferences: {
+        preload: path.join(__dirname, 'preload.js')
+      }
+    })
+  }
   employee.loadFile('./src/views/employee.html')
 
 
@@ -45,23 +46,23 @@ ipcMain.on('employee-window', () => {
 
 
 let service
-function serviceWindow(){
-    const main = BrowserWindow.getFocusedWindow()
-    if (main) {
-        service = new BrowserWindow({
-            width: 1080,
-            height: 980,
-            //autoHideMenuBar: true,
-            //resizable: false,
-            parent: main,
-            modal: true,
-            center: true, 
-            //ativação do preload.js
-            webPreferences: {
-                preload: path.join(__dirname, 'preload.js')
-            }
-        })
-    }
+function serviceWindow() {
+  const main = BrowserWindow.getFocusedWindow()
+  if (main) {
+    service = new BrowserWindow({
+      width: 1080,
+      height: 980,
+      //autoHideMenuBar: true,
+      //resizable: false,
+      parent: main,
+      modal: true,
+      center: true,
+      //ativação do preload.js
+      webPreferences: {
+        preload: path.join(__dirname, 'preload.js')
+      }
+    })
+  }
   service.loadFile('./src/views/service.html')
 
 
@@ -71,17 +72,6 @@ ipcMain.on('service-window', () => {
   serviceWindow()
 })
 
-/** 
-// Abre uma nova janela ao clicar no botão
-ipcMain.on('employee-window', () => {
-  const clientWin = new BrowserWindow({
-    width: 1080,
-    height: 900
-  })
-
-  clientWin.loadFile('./src/views/employee.html')
-})
-*/
 app.whenReady().then(createWindow)
 
 let about
@@ -176,7 +166,7 @@ const template = [
       },
       {
         label: 'Recarregar',
-        Click: () => updateList()
+        role: 'reload'
       },
       {
         label: 'DevTools',
