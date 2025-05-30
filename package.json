@@ -5,6 +5,8 @@
   "dependencies": {
     "electron": "^36.2.0",
     "i": "^0.3.7",
+    "mongodb": "^6.16.0",
+    "mongoose": "^8.15.1",
     "node": "^24.0.1"
   },
   "name": "solitacaoservicosgerais",

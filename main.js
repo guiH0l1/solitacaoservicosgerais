@@ -1,6 +1,9 @@
 const { app, shell, BrowserWindow, ipcMain, Menu } = require('electron')
 const path = require('node:path')
 
+const { conectar, desconectar } = require('./database')
+
+
 function createWindow() {
   const win = new BrowserWindow({
     width: 700,
@@ -16,6 +19,7 @@ function createWindow() {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template))
   win.loadFile('./src/views/index.html')
 }
+
 
 let employee
 function employeeWindow() {
@@ -104,9 +108,9 @@ function aboutWindow() {
 }
 
 ipcMain.on('close-employee-window', () => {
-  const win = BrowserWindow.getFocusedWindow();
+  const win = BrowserWindow.getFocusedWindow()
   if (win) {
-    win.close();
+    win.close()
   }
 })
 

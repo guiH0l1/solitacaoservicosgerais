@@ -1,5 +1,17 @@
 //console.log("Processo de renderização")
 
+// processo de cadastro do cliente
+const foco = document.getElementById('searchEmployee')
+// Criar um vetor global para extrair os dados do cliente
+let arrayEmployee = []
+document.addEventListener('DOMContentLoaded', () => {
+    btnUpdate.disabled = true
+    btnDelete.disabled = true
+    // Ativar o botao adicionar
+    btnCreate.disabled = false
+    foco.focus()
+})
+
 function employee() {
     api.employeeWindow()
 }
@@ -22,7 +34,6 @@ function getData() {
     }
     return data.toLocaleDateString('pt-BR', options)
 }
-
 document.getElementById('currentlyData').innerHTML = getData()
 
 function validateCPF() {
@@ -74,20 +85,9 @@ api.resetForm((args) => {
     resetForm()
 })
 
+//document.getElementById('btnUpdate').disabled = true
 
-// processo de cadastro do cliente
-const foco = document.getElementById('searchEmployee')
-// Criar um vetor global para extrair os dados do cliente
-let arrayEmployee = []
-document.addEventListener('DOMContentLoaded', () => {
-    btnUpdate.disabled = true
-    btnDelete.disabled = true
-    // Ativar o botao adicionar
-    btnCreate.disabled = false
-    foco.focus()
-})
 
-/**
 api.dbStatus((event, message) => {
     console.log(message)
     if (message === "conectado") {
@@ -95,7 +95,7 @@ api.dbStatus((event, message) => {
     } else {
         document.getElementById('statusdb').src = "../public/img/dboff.png"
     }
-})*/
+})
 
 /**api.renderOS((event, dataOS) => {
     console.log(dataOS)
