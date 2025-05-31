@@ -1,7 +1,72 @@
-const { app, shell, BrowserWindow, ipcMain, Menu } = require('electron')
+const { app, BrowserWindow, ipcMain, Menu } = require('electron')
 const path = require('node:path')
+const { conectar, desconectar } = require('./database.js')
+const Employee = require('./src/models/employee.js')
 
-const { conectar, desconectar } = require('./database')
+async function testConnection() {
+  try {
+    const count = await Employee.countDocuments()
+    console.log('Total de funcionários no banco:', count)
+  } catch (error) {
+    console.error('Erro ao acessar dados:', error)
+  }
+}
+
+app.whenReady().then(async () => {
+  const status = await conectar()
+  console.log('Status da conexão:', status)
+
+  if (status === 'conectado') {
+    await testConnection()  // 👈 CHAMADA AQUI
+  }
+
+  const mainWindow = BrowserWindow.getFocusedWindow()
+  if (mainWindow) {
+    mainWindow.webContents.once('did-finish-load', () => {
+      mainWindow.webContents.send('db-status', status)
+    })
+  }
+})
+
+
+/** 
+app.whenReady().then(async () => {
+  const status = await conectar()
+
+  // Envia status de conexão para o renderer
+  const mainWindow = BrowserWindow.getFocusedWindow()
+  if (mainWindow) {
+    mainWindow.webContents.once('did-finish-load', () => {
+      mainWindow.webContents.send('db-status', status)
+    })
+  }
+})*/
+
+app.whenReady().then(async () => {
+  const status = await conectar();
+
+  // Envia status de conexão para o renderer
+  const mainWindow = BrowserWindow.getFocusedWindow();
+  if (mainWindow) {
+    mainWindow.webContents.once('did-finish-load', () => {
+      mainWindow.webContents.send('db-status', status);
+    });
+  }
+});
+
+
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+})
+
+app.on('before-quit', async () => {
+  await desconectar()
+})
+
+app.commandLine.appendSwitch('log-level', '3')
 
 
 function createWindow() {
@@ -18,6 +83,7 @@ function createWindow() {
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template))
   win.loadFile('./src/views/index.html')
+
 }
 
 
@@ -192,6 +258,21 @@ const template = [
     ]
   }
 ]
+
+
+// == Processo CRUD =====================================================
+// ======================================================================
+
+ipcMain.on('save-employee', async (event, data) => {
+  try {
+    const novo = new Employee(data)
+    await novo.save()
+    event.reply('save-employee-success', 'Funcionário salvo com sucesso!')
+  } catch (error) {
+    console.error('Erro ao salvar funcionário:', error)
+    event.reply('save-employee-error', 'Erro ao salvar funcionário.')
+  }
+})
 
 
 

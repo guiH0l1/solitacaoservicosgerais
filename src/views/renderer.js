@@ -90,10 +90,68 @@ api.resetForm((args) => {
 
 api.dbStatus((event, message) => {
     console.log(message)
-    if (message === "conectado") {
-        document.getElementById('statusdb').src = "../public/img/dbon.png"
-    } else {
+    if (message === "MongoDB desconectado") {
         document.getElementById('statusdb').src = "../public/img/dboff.png"
+    } else {
+        document.getElementById('statusdb').src = "../public/img/dbon.png"
+    }
+})
+
+
+// == captura de dados
+let formEmp = document.getElementById('formEmployee')
+let nome = document.getElementById('inputNome')
+let cpf = document.getElementById('inputCpf')
+let cargo = document.getElementById('inputSector')
+let email = document.getElementById('inputEmail')
+let tel = document.getElementById('inputTelefone')
+let uni = document.getElementById('inputUn')
+
+let idEmp = document.getElementById('inputIdEmployee')
+
+
+formEmp.addEventListener('submit', async (event) => {
+    // evitar comportamento padrão de recarregar a página
+    event.preventDefault()
+    console.log(
+        nome.value,
+        cpf.value,
+        cargo.value,
+        email.value,
+        tel.value,
+        uni.value
+        
+    )
+    // Estrategia para usar o submit para cadastrar um novo cliente ou editar os dados de um cliente existente
+    // Verificar se existe o id do cliente
+    if (idEmp.value === ''){
+        // cadastrar um novo cliente
+        const newEmployee = {
+            nomeEmp: nome.value,
+            cpfCli: cpf.value,
+            cargoEmp: cargo.value,
+            emailCli: email.value,
+            telCli: tel.value,
+            uniCli: uni.value
+        }
+        // Enviar ao main
+        api.createEmployee(newEmployee)
+    }else{
+        // Alterar os dados de um cliente existente
+        // Teste de validação do id
+        //console.log(idClient.value)
+        // Editar um cliente existente
+        const employee = {
+            idCli: idClient.value,
+            nomeEmp: nome.value,
+            cpfCli: cpf.value,
+            cargoEmp: cargo.value,
+            emailCli: email.value,
+            telCli: tel.value,
+            uniCli: uni.value
+        }
+        // Enviar ao main o objeto cliente Passo - 2
+        api.updateEmployee(employee)
     }
 })
 
