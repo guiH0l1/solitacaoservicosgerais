@@ -1,17 +1,9 @@
 const { app, BrowserWindow, ipcMain, Menu } = require('electron')
 const path = require('node:path')
 const { conectar, desconectar } = require('./database.js')
-const Employee = require('./src/models/employee.js')
+const employeeModel = require('./src/models/employee.js')
 
-async function testConnection() {
-  try {
-    const count = await Employee.countDocuments()
-    console.log('Total de funcionários no banco:', count)
-  } catch (error) {
-    console.error('Erro ao acessar dados:', error)
-  }
-}
-
+/**
 app.whenReady().then(async () => {
   const status = await conectar()
   console.log('Status da conexão:', status)
@@ -26,7 +18,7 @@ app.whenReady().then(async () => {
       mainWindow.webContents.send('db-status', status)
     })
   }
-})
+}) */
 
 
 /** 
@@ -41,6 +33,8 @@ app.whenReady().then(async () => {
     })
   }
 })*/
+
+
 
 app.whenReady().then(async () => {
   const status = await conectar();
@@ -106,10 +100,8 @@ function employeeWindow() {
     })
   }
   employee.loadFile('./src/views/employee.html')
-
-
 }
-
+ 
 ipcMain.on('employee-window', () => {
   employeeWindow()
 })
@@ -263,17 +255,60 @@ const template = [
 // == Processo CRUD =====================================================
 // ======================================================================
 
-ipcMain.on('save-employee', async (event, data) => {
+
+
+ipcMain.on('create-employee', async (event, newEmployee) => {
   try {
-    const novo = new Employee(data)
-    await novo.save()
-    event.reply('save-employee-success', 'Funcionário salvo com sucesso!')
+    const employee = new Employee({
+      nome: newEmployee.nomeEmp,
+      cpf: newEmployee.cpfEmp,
+      cargo: newEmployee.cargoEmp,
+      email: newEmployee.emailEmp,
+      telefone: newEmployee.telEmp,
+      unidade: newEmployee.uniEmp,
+    });
+
+    await employee.save();
+
+    console.log('Funcionário salvo com sucesso!');
+    // Pode enviar uma resposta pro renderer se quiser
+    event.reply('employee-created', { success: true });
   } catch (error) {
-    console.error('Erro ao salvar funcionário:', error)
-    event.reply('save-employee-error', 'Erro ao salvar funcionário.')
+    console.error('Erro ao salvar funcionário:', error);
+    event.reply('employee-created', { success: false, error: error.message });
   }
 })
 
+
+
+
+/** 
+ipcMain.on('create-employee', async (event, newEmployee) => {
+  console.log('Dados recebidos no main:', newEmployee)
+  try {
+    const employee = new employeeModel({
+      nome: newEmployee.nomeEmp,
+      cpf: newEmployee.cpfEmp,
+      cargo: newEmployee.cargoEmp,
+      email: newEmployee.emailEmp,
+      telefone: newEmployee.telEmp,
+      unidade: newEmployee.uniEmp
+    });
+    await employee.save();
+    dialog.showMessageBox({
+      type: 'info',
+      title: "Aviso",
+      message: "Funcionário adicionado com sucesso.",
+      buttons: ['OK']
+    }).then((result) => {
+      if (result.response === 0) {
+        event.reply('reset-form');
+      }
+    });
+  } catch (error) {
+    console.error('Erro ao salvar funcionário:', error);
+  }
+})*/
 
 
 /**function searchName() {

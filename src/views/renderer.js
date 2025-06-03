@@ -86,7 +86,7 @@ api.resetForm((args) => {
 })
 
 //document.getElementById('btnUpdate').disabled = true
-
+let create = document.getElementById('btnCreate')
 
 api.dbStatus((event, message) => {
     console.log(message)
@@ -97,7 +97,6 @@ api.dbStatus((event, message) => {
     }
 })
 
-
 // == captura de dados
 let formEmp = document.getElementById('formEmployee')
 let nome = document.getElementById('inputNome')
@@ -106,14 +105,16 @@ let cargo = document.getElementById('inputSector')
 let email = document.getElementById('inputEmail')
 let tel = document.getElementById('inputTelefone')
 let uni = document.getElementById('inputUn')
-
 let idEmp = document.getElementById('inputIdEmployee')
 
 
+document.addEventListener('DOMContentLoaded', () => {
 formEmp.addEventListener('submit', async (event) => {
     // evitar comportamento padrão de recarregar a página
+    console.log("teste")
     event.preventDefault()
     console.log(
+        idEmp.value,
         nome.value,
         cpf.value,
         cargo.value,
@@ -128,11 +129,11 @@ formEmp.addEventListener('submit', async (event) => {
         // cadastrar um novo cliente
         const newEmployee = {
             nomeEmp: nome.value,
-            cpfCli: cpf.value,
+            cpfEmp: cpf.value,
             cargoEmp: cargo.value,
-            emailCli: email.value,
-            telCli: tel.value,
-            uniCli: uni.value
+            emailEmp: email.value,
+            telEmp: tel.value,
+            uniEmp: uni.value
         }
         // Enviar ao main
         api.createEmployee(newEmployee)
@@ -142,17 +143,18 @@ formEmp.addEventListener('submit', async (event) => {
         //console.log(idClient.value)
         // Editar um cliente existente
         const employee = {
-            idCli: idClient.value,
+            idEmp: idEmp.value,
             nomeEmp: nome.value,
-            cpfCli: cpf.value,
+            cpfEmp: cpf.value,
             cargoEmp: cargo.value,
-            emailCli: email.value,
-            telCli: tel.value,
-            uniCli: uni.value
+            emailEmp: email.value,
+            telEmp: tel.value,
+            uniEmp: uni.value
         }
         // Enviar ao main o objeto cliente Passo - 2
         api.updateEmployee(employee)
     }
+})
 })
 
 /**api.renderOS((event, dataOS) => {
