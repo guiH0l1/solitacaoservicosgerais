@@ -9,9 +9,6 @@ function service() {
     api.serviceWindow()
 }
 
-function backPage() {
-    api.closeWindow()
-}
 
 function getData() {
     const data = new Date()
@@ -28,7 +25,6 @@ document.getElementById('currentlyData').innerHTML = getData()
 
 //document.getElementById('btnUpdate').disabled = true
 api.dbStatus((event, message) => {
-    console.log(message)
     if (message === "MongoDB desconectado") {
         document.getElementById('statusdb').src = "../public/img/dboff.png"
     } else {

@@ -1,4 +1,10 @@
+function backPage() {
+    api.closeWindow()
+}
+
 // processo de cadastro do cliente
+
+
 const foco = document.getElementById('searchEmployee')
 let arrayEmployee = []
 
@@ -73,6 +79,7 @@ let uni = document.getElementById('inputUn')
 let idEmp = document.getElementById('inputIdEmployee')
 
 
+// PROCESSO DE CADASTRO
 document.addEventListener('DOMContentLoaded', () => {
 formEmp.addEventListener('submit', async (event) => {
     // evitar comportamento padrão de recarregar a página
@@ -121,3 +128,47 @@ formEmp.addEventListener('submit', async (event) => {
     }
 })
 })
+
+//PROCESSO DE BUSCA
+
+function searchName() {
+    const input = document.getElementById('searchEmployee').value.trim();
+    if (input === '') return;
+
+    const isCpf = /^\d{11}$/.test(input.replace(/\D/g, ''));
+    if (isCpf) {
+        api.searchByCpf(input);
+    } else {
+        api.searchByName(input);
+    }
+}
+  api.onSearchResult((event, result) => {
+    if (result.success && result.employee) {
+        const c = result.employee;
+        document.getElementById('inputIdEmployee').value = c._id;
+        document.getElementById('inputNome').value = c.nome;
+        document.getElementById('inputCpf').value = c.cpf;
+        document.getElementById('inputSector').value = c.cargo;
+        document.getElementById('inputEmail').value = c.email;
+        document.getElementById('inputTelefone').value = c.telefone;
+        document.getElementById('inputUn').value = c.unidade;
+
+        document.getElementById('btnCreate').disabled = true;
+        document.getElementById('btnUpdate').disabled = false;
+        document.getElementById('btnDelete').disabled = false;
+    } else {
+        alert("Funcionário não encontrado.");
+    }
+})
+
+
+/**
+ * 
+api.setCpf((args) => {
+    console.log("teste do IPC 'set-cpf'")
+    let buscaCpf = document.getElementById('searchEmployee').value
+    nome.focus()
+    foco.value = ""
+    cpf.value = buscaCpf
+    restaurarEnter()
+}) */

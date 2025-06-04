@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, Menu } = require('electron')
+const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron')
 const path = require('node:path')
 const { conectar, desconectar } = require('./database.js')
 const employeeModel = require('./src/models/employee.js')
@@ -265,22 +265,57 @@ ipcMain.on('create-employee', async (event, newEmployee) => {
       unidade: newEmployee.uniEmp
     });
 
-    await employee.save()
+    await employee.save();
 
-    console.log('Funcionário salvo com sucesso!');
-
-    // Enviar resposta de sucesso para o renderer
-    event.reply('employee-created', { success: true });
-    // Opcional: mandar resetar formulário no renderer
-    event.reply('reset-form');
+    dialog.showMessageBox({
+      type: 'info',
+      title: "Aviso",
+      message: "funcionario adicionado com sucesso.",
+      buttons: ['OK']
+    }).then((result) => {
+      if (result.response === 0) {
+        event.reply('reset-form')
+      }
+    })
 
   } catch (error) {
-    console.error('Erro ao salvar funcionário:', error);
-    event.reply('employee-created', { success: false, error: error.message });
+    // Tratamento da excessão "CPF duplicado"
+    if (error.code === 11000) {
+      dialog.showMessageBox({
+        type: 'error',
+        title: "Atenção!!!",
+        message: "CPF já cadastrado.\nVerifique o número digitado",
+        buttons: ['OK']
+      }).then((result) => {
+        // Se o botão OK for pressionado
+        if (result.response === 0) {
+          // Encontrar o campo de CPF
+          event.reply('reset-cpf')
+        }
+      })
+    } else {
+      console.log(error);
+    }
   }
 })
 
+ipcMain.on('search-by-cpf', async (event, cpf) => {
+  try {
+    const employee = await employeeModel.findOne({ cpf: cpf });
+    event.reply('search-result', { success: true, employee });
+  } catch (error) {
+    event.reply('search-result', { success: false, error: error.message });
+  }
+});
 
+ipcMain.on('search-by-name', async (event, name) => {
+  try {
+    const employee = await employeeModel.findOne({ nome: new RegExp(name, 'i') });
+    event.reply('search-result', { success: true, employee });
+  } catch (error) {
+    event.reply('search-result', { success: false, error: error.message });
+  }
+})
 
 /**function searchName() {
   let input = document.getElementById('searchCliente').value.trim()
