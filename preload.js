@@ -7,6 +7,6 @@ contextBridge.exposeInMainWorld('api', {
     resetForm: (args) => ipcRenderer.on('reset-form', args),
     closeWindow: () => ipcRenderer.send('close-employee-window'),
     dbStatus: (message) => ipcRenderer.on('db-status', message),
-    createEmployee: (newEmployee) =>  ipcRenderer.send("create-employee", newEmployee)
+    createEmployee: (newEmployee) =>  ipcRenderer.send("create-employee", newEmployee),
 })
 

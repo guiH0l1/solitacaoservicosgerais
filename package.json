@@ -4,9 +4,10 @@
   },
   "dependencies": {
     "electron": "^36.3.2",
+    "i": "^0.3.7",
     "jspdf": "^3.0.1",
     "mongodb": "^6.16.0",
-    "mongoose": "^8.12.2",
+    "mongoose": "^8.15.1",
     "moongose": "^1.0.0"
   },
   "name": "solitacaoservicosgerais",

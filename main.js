@@ -46,8 +46,7 @@ app.whenReady().then(async () => {
       mainWindow.webContents.send('db-status', status);
     });
   }
-});
-
+})
 
 
 app.on('window-all-closed', () => {
@@ -255,36 +254,7 @@ const template = [
 // == Processo CRUD =====================================================
 // ======================================================================
 
-
-
 ipcMain.on('create-employee', async (event, newEmployee) => {
-  try {
-    const employee = new Employee({
-      nome: newEmployee.nomeEmp,
-      cpf: newEmployee.cpfEmp,
-      cargo: newEmployee.cargoEmp,
-      email: newEmployee.emailEmp,
-      telefone: newEmployee.telEmp,
-      unidade: newEmployee.uniEmp,
-    });
-
-    await employee.save();
-
-    console.log('Funcionário salvo com sucesso!');
-    // Pode enviar uma resposta pro renderer se quiser
-    event.reply('employee-created', { success: true });
-  } catch (error) {
-    console.error('Erro ao salvar funcionário:', error);
-    event.reply('employee-created', { success: false, error: error.message });
-  }
-})
-
-
-
-
-/** 
-ipcMain.on('create-employee', async (event, newEmployee) => {
-  console.log('Dados recebidos no main:', newEmployee)
   try {
     const employee = new employeeModel({
       nome: newEmployee.nomeEmp,
@@ -294,21 +264,22 @@ ipcMain.on('create-employee', async (event, newEmployee) => {
       telefone: newEmployee.telEmp,
       unidade: newEmployee.uniEmp
     });
-    await employee.save();
-    dialog.showMessageBox({
-      type: 'info',
-      title: "Aviso",
-      message: "Funcionário adicionado com sucesso.",
-      buttons: ['OK']
-    }).then((result) => {
-      if (result.response === 0) {
-        event.reply('reset-form');
-      }
-    });
+
+    await employee.save()
+
+    console.log('Funcionário salvo com sucesso!');
+
+    // Enviar resposta de sucesso para o renderer
+    event.reply('employee-created', { success: true });
+    // Opcional: mandar resetar formulário no renderer
+    event.reply('reset-form');
+
   } catch (error) {
     console.error('Erro ao salvar funcionário:', error);
+    event.reply('employee-created', { success: false, error: error.message });
   }
-})*/
+})
+
 
 
 /**function searchName() {
