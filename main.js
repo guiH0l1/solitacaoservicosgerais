@@ -265,7 +265,7 @@ ipcMain.on('create-employee', async (event, newEmployee) => {
       unidade: newEmployee.uniEmp
     });
 
-    await employee.save();
+    await employee.save()
 
     dialog.showMessageBox({
       type: 'info',
